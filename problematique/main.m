@@ -17,6 +17,7 @@ addpath("donnees/");
 
 %% Analyse P300 structure
 
-plotTrainingData(training_nP300, training_P300);
+% plotTrainingData(training_nP300, training_P300);
 
-[probNP300, probP300] = evaluationProbability(training_nP300, training_P300);
+[vectorPropreNP300, vectorPropreP300] = decorelation(training_nP300, training_P300);
+[probNP300, probP300] = evaluationProbability(vectorPropreNP300, vectorPropreP300);
