@@ -9,7 +9,7 @@ function [propreNP300, propreP300] = decorelation(nP300, P300)
     [vectorPropreP300, valeurPropreP300] = eig(covP300);
     
     % Return
-    propreNP300 = [nP300(:, 1), nP300(:, 4)];
-    propreP300 = [P300(:, 1), P300(:, 4)];
+    propreNP300 = [nP300(:, 3), nP300(:, 4)];
+    propreP300 = [P300(:, 3), P300(:, 4)];
 end
 
