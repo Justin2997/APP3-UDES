@@ -36,5 +36,13 @@ function [] = plotTrainingData(nP300, P300)
     hold on
     plot(P300(:, 2), P300(:, 3), "o");
     plot(nP300(:, 2), nP300(:, 3), "x");
+    
+    % Histogramme
+    figure;
+    hold on
+    histogram(P300(:, 3));
+    histogram(P300(:, 4));
+    histogram(nP300(:, 3));
+    histogram(nP300(:, 4));
 end
 

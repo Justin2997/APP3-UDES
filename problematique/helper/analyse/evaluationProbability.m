@@ -1,5 +1,5 @@
 function [probNP300, probP300] = evaluationProbability(nP300, P300)
-    syms x1 x2; x = [x1; x2]; % Les 2 signal de P300 sont corrélé
+    syms x1 x2 x3; x = [x1; x2; x3]; % Les 3 signal de P300 sont corrélé
 
     meanNP300 = (x - mean(nP300)');
     meanP300 = (x - mean(P300)');
