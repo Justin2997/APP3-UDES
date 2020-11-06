@@ -10,6 +10,8 @@ format compact;
 addpath("helper/");
 addpath("helper/init");
 addpath("helper/analyse");
+addpath("helper/classification");
+addpath("helper/classification/loiGaussienne");
 addpath("donnees/");
 
 [training_nP300, training_P300, Inconnus] = loadTrainingData();
@@ -18,7 +20,13 @@ addpath("donnees/");
 %% Analyse P300 structure
 
 %plotTrainingData(training_nP300, training_P300);
+[decorelation_training_nP300, decorelation_training_P300] = decorelation(training_nP300, training_P300);
 
-[vectorPropreNP300, vectorPropreP300] = decorelation(training_nP300, training_P300);
-[probNP300, probP300] = evaluationProbability(vectorPropreNP300, vectorPropreP300);
-[errorNP300, errorP300] = calculeError(probNP300, probP300, vectorPropreNP300, vectorPropreP300);
+%% Implémentation d'algorithme - Loi Gaussienne
+[probNP300, probP300] = evaluationProbability(decorelation_training_nP300, decorelation_training_P300);
+
+%[decorelation_training_nP300, decorelation_training_P300] = decorelation(training_nP300, training_P300);
+%[training_errorNP300, training_errorP300] = calculeErrorGaussiennes(probNP300, probP300, decorelation_training_nP300, decorelation_training_P300);
+
+[decorelation_test_nP300, decorelation_test_P300] = decorelation(test_nP300, test_P300);
+[test_errorNP300, test_errorP300] = testDataGaussienne(probNP300, probP300, decorelation_test_nP300, decorelation_test_P300);
