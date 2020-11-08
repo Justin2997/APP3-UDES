@@ -9,14 +9,14 @@ function [propreNP300, propreP300] = decorelation(nP300, P300)
     % nP300 = resample(nP300, 1, 4);
     
     % Covariance
-    covNP300 = cov(nP300);
-    covP300 = cov(P300);
-    covCombine = cov([nP300; P300]);
+    %covNP300 = cov(nP300);
+    %covP300 = cov(P300);
+    %covCombine = cov([nP300; P300]);
 
     % VectorPropre
-    [vectorPropreNP300, valeurPropreNP300] = eig(covNP300);
-    [vectorPropreP300, valeurPropreP300] = eig(covP300);
-    [vectorPropreCombineP300, valeurPropreCombineP300] = eig(covCombine);
+    %[vectorPropreNP300, valeurPropreNP300] = eig(covNP300);
+    %[vectorPropreP300, valeurPropreP300] = eig(covP300);
+    %[vectorPropreCombineP300, valeurPropreCombineP300] = eig(covCombine);
     
     % PCA
     % L'ACP va déterminer les deux axes qui expliquent le mieux la dispersion de l'objet, interprété comme un nuage de points. Elle va aussi les ordonner par inertie expliquée, le second axe étant perpendiculaire au premier.
