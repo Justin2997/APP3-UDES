@@ -16,9 +16,13 @@ addpath("helper/classification/plusProcheVoisin");
 addpath("donnees/");
 
 [training_nP300, training_P300, Inconnus] = loadTrainingData();
+all_training = [training_nP300;training_P300];
+
 [test_nP300, test_P300] = loadTestData();
 
 %% Analyse P300 structure
+
+analyse_pca(all_training)
 
 % plotTrainingData(training_nP300, training_P300);
 [decorelation_training_nP300, decorelation_training_P300] = decorelation(training_nP300, training_P300);
