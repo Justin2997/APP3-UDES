@@ -23,7 +23,7 @@ for index = 1:length(propreNP300_test)
     npXc = get2DHistValue(nP300_hist,nPXedge,nPYedge,propreNP300_test(index,:));
     pX = get2DHistValue(alldata_hist,AXedge,AYedge,propreNP300_test(index,:));
     
-    PCx3 = pXc*CxP300/pX;
+    PCx3 = pXc*CxP300/pX * 3;
     nPCx3 = npXc*CxnP300/pX;
     
     if nPCx3 < PCx3
@@ -37,7 +37,7 @@ for index = 1:length(propreP300_test)
     npXc = get2DHistValue(nP300_hist,nPXedge,nPYedge,propreP300_test(index,:));
     pX = get2DHistValue(alldata_hist,AXedge,AYedge,propreP300_test(index,:));
     
-    PCx3 = pXc*CxP300/pX;
+    PCx3 = pXc*CxP300/pX * 3;
     nPCx3 = npXc*CxnP300/pX;
     
     if nPCx3 > PCx3
