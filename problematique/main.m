@@ -33,9 +33,13 @@ addpath("donnees/");
 %[test_errorNP300, test_errorP300] = testDataGaussienne(probNP300, probP300, decorelation_test_nP300, decorelation_test_P300);
 
 
-%% Implémentation Plus proche voisin
-[test_errorNP300, test_errorP300] = errorTestPlusProcheVoisin(decorelation_test_nP300, decorelation_test_P300, decorelation_training_nP300, decorelation_training_P300, 3);
-%[k_ppv_frontiaire] = evaluationProbability(decorelation_training_nP300, decorelation_training_P300);
+%% 5 - Implémentation Plus proche voisin
+
+% A)
+[frontiaire] = frontiairePlusProcheVoisin(decorelation_training_nP300, decorelation_training_P300);
+
+% B)
+%[test_errorNP300, test_errorP300] = errorTestPlusProcheVoisin(decorelation_test_nP300, decorelation_test_P300, decorelation_training_nP300, decorelation_training_P300, 3);
 
 
 
