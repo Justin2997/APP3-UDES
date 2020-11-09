@@ -1,11 +1,10 @@
-function [frontiaire, nouveauNP300, nouveauP300] = frontiairePlusProcheVoisin(nP300, P300)
+function [baricentreNP300, baricentreP300] = quantificationVectoriellePlusProcheVoisin(nP300, P300)
     %% Init
     nP300 = resample(nP300, 1, 4);
     k = 2;
     
     nouveauNP300 = [];
     nouveauP300 = [];
-    frontiaire = 0;
 
     %% Prend 2 baricentres aléatoire
     nP300min = 1;
@@ -45,13 +44,13 @@ function [frontiaire, nouveauNP300, nouveauP300] = frontiairePlusProcheVoisin(nP
        
        % Recalcule du barricentre       
        baricentreNP300 = mean(nouveauNP300);
-       baricentreNP300 = mean(nouveauNP300);
+       baricentreP300 = mean(nouveauP300);
     end
     
-    fprintf('=========================== \n');
-    fprintf('K                       = %.4f \n', k);
-    fprintf('Classification P300     = %.4f \n', size(nouveauP300, 1));
-    fprintf('Classification NP300    = %.4f \n', size(nouveauNP300, 1));
-    fprintf('=========================== \n');
+    %fprintf('=========================== \n');
+    %fprintf('K                       = %.4f \n', k);
+    %fprintf('Classification P300     = %.4f \n', size(nouveauP300, 1));
+    %fprintf('Classification NP300    = %.4f \n', size(nouveauNP300, 1));  
+    %fprintf('=========================== \n');
 end
 

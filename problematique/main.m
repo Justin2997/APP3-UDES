@@ -12,12 +12,13 @@ addpath("helper/init");
 addpath("helper/analyse");
 addpath("helper/classification");
 addpath("helper/classification/loiGaussienne");
-addpath("helper/classification/plusProcheVoisin");
+addpath("helper/classification/plusProcheVoisin/A");
+addpath("helper/classification/plusProcheVoisin/B");
 addpath("helper/classification/bayes");
 addpath("donnees/");
 
 [training_nP300, training_P300, Inconnus] = loadTrainingData();
-all_training = [training_nP300;training_P300];
+all_training = [training_nP300; training_P300];
 
 [test_nP300, test_P300] = loadTestData();
 
@@ -45,9 +46,16 @@ all_training = [training_nP300;training_P300];
 %% 5 - Implémentation Plus proche voisin
 
 % A)
-[frontiaire] = frontiairePlusProcheVoisin(decorelation_training_nP300, decorelation_training_P300);
+fprintf('5 - A) \n');
+k = 3;
+[baricentreNP300, baricentreP300] = baricentrePlusProcheVoisin(decorelation_training_nP300, decorelation_training_P300, k);
+[test_errorNP300, test_errorP300] = errorTestPlusProcheVoisin(decorelation_test_nP300, decorelation_test_P300, baricentreNP300, baricentreP300, k);
+[inconnuNP300, inconnuP300] = inconnuTestPlusProcheVoisin(Inconnus, baricentreNP300, baricentreP300, k);
 
 % B)
-%[test_errorNP300, test_errorP300] = errorTestPlusProcheVoisin(decorelation_test_nP300, decorelation_test_P300, decorelation_training_nP300, decorelation_training_P300, 3);
-
+fprintf('5 - B) \n');
+k = 1;
+[baricentreNP300, baricentreP300] = quantificationVectoriellePlusProcheVoisin(decorelation_training_nP300, decorelation_training_P300);
+[test_errorNP300, test_errorP300] = errorTestPlusProcheVoisin(decorelation_test_nP300, decorelation_test_P300, baricentreNP300, baricentreP300, k);
+[inconnuNP300, inconnuP300] = inconnuTestPlusProcheVoisin(Inconnus, baricentreNP300, baricentreP300, k);
 
