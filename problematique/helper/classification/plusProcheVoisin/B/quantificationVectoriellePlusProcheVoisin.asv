@@ -37,27 +37,26 @@ function [baricentreNP300, baricentreP300] = quantificationVectoriellePlusProche
        if (distance_from_P300 < distance_from_NP300)
            % C'est un P300
            nouveauP300 = [nouveauP300; point];
-           
-           tempP300 = baricentreP300;
-           if (size(nouveauP300, 1) ~= 1)
-                baricentreP300 = mean(nouveauP300);
-
-                if (tempP300 == baricentreP300)
-                    break 
-                end
-            end
        else
            % C'est un NP300
            nouveauNP300 = [nouveauNP300; point];
-           
-           tempNP300 = baricentreNP300;
-           if (size(nouveauNP300, 1) ~= 1)
-                baricentreNP300 = mean(nouveauNP300);
-
-                if (tempNP300 == baricentreNP300)
-                    break 
-                end
-           end
+       end
+       
+       % Recalcule du barricentre
+       tempNP300 = baricentreNP300;
+       tempP300 = baricentreP300;
+       
+       if (nouveauNP300)
+       baricentreNP300 = mean(nouveauNP300);
+       baricentreP300 = mean(nouveauP300);
+       
+       % Stabilisation
+       if (tempNP300 == baricentreNP300)
+          break 
+       end
+       
+       if (tempP300 == baricentreP300)
+           break
        end
     end
     
