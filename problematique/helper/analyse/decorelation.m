@@ -1,4 +1,4 @@
-function [propreNP300, propreP300] = decorelation(nP300, P300)
+function [propreNP300, propreP300] = decorelation(nP300, P300, coeff)
     % Page 117 Note de Cours
     % Ce raisonnement peut être poursuivi, et, finalement, 
     % la matrice U qui permet d’obtenir la meilleure représentation possible des données est la matrice des vecteurs propres de la matrice 
@@ -24,6 +24,9 @@ function [propreNP300, propreP300] = decorelation(nP300, P300)
     % pcaP300 = pcacov(P300);
     
     % Return
+    P300 = P300 * coeff;
+    nP300 = nP300 * coeff;
+    
     propreNP300 = [nP300(:, 3), nP300(:, 4)];
     propreP300 = [P300(:, 3), P300(:, 4)];
 end
