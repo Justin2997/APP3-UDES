@@ -1,10 +1,9 @@
 function [errorNP300, errorP300] = calculeErrorGaussiennes(probNP300, probP300, nP300, P300)
     syms x1 x2;
     
-    numberNP300 = 130;
-    numberP300 = 130;
+    numberNP300 = size(nP300, 1);
+    numberP300 = size(P300, 1);
 
-    
     fprintf('=========================== \n');
     fprintf('Training \n');
     
@@ -30,7 +29,6 @@ function [errorNP300, errorP300] = calculeErrorGaussiennes(probNP300, probP300, 
         point = P300(index, :);
         testP300 = eval(subs(probP300, [x1, x2], point));
         testNP300 = eval(subs(probNP300, [x1, x2], point));
-        %testNP300 = testNP300/3;
 
         % Faux négatif
         if (testP300 < testNP300)
@@ -40,8 +38,8 @@ function [errorNP300, errorP300] = calculeErrorGaussiennes(probNP300, probP300, 
     fprintf('Finish P300 \n');
 
     fprintf('=========================== \n');
-    fprintf('Training : error NP300 = %.4f \n', ((numberNP300 - errorNP300)/numberNP300) * 100);
-    fprintf('Training : error P300 = %.4f \n', ((numberP300 - errorP300)/numberP300) * 100);
+    fprintf('Training : error NP300 = %.4f \n', ((errorNP300)/numberNP300) * 100);
+    fprintf('Training : error P300 = %.4f \n', ((errorP300)/numberP300) * 100);
     fprintf('=========================== \n');
 
     fprintf('=========================== \n');

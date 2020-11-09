@@ -67,9 +67,9 @@ k = 100;
 
 % B)
 fprintf('5 - B) \n');
-k = 2;
+k = 60;
 nombreBaricentreInitial = 15;
 [baricentreNP300, baricentreP300] = quantificationVectoriellePlusProcheVoisin(decorelation_training_nP300, decorelation_training_P300, nombreBaricentreInitial);
-[test_errorNP300, test_errorP300] = errorTestPlusProcheVoisin(decorelation_test_nP300, decorelation_test_P300, baricentreNP300, baricentreP300, k);
+[test_errorNP300, test_errorP300] = errorTestPlusProcheVoisin(decorelation_test_nP300, decorelation_test_P300, nP300, decorelation_training_P300, k);
 [inconnuNP300, inconnuP300] = inconnuTestPlusProcheVoisin(decorelation_inconnu, baricentreNP300, baricentreP300, k);
 

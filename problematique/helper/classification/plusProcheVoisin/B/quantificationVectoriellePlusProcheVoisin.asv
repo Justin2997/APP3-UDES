@@ -17,8 +17,8 @@ function [baricentreNP300, baricentreP300] = quantificationVectoriellePlusProche
     baricentreNP300 = nP300(nP300rand, :);
     baricentreP300 = P300(P300rand, :);
     
-    baricentreNP300 = mean(baricentreNP300);
-    baricentreP300 = mean(baricentreP300);
+    baricentreNP300 = mean(nouveauNP300);
+    baricentreNP300 = mean(nouveauNP300);
     
     nouveauNP300 = [nouveauNP300; baricentreNP300];
     nouveauP300 = [nouveauP300; baricentreP300];
@@ -64,9 +64,9 @@ function [baricentreNP300, baricentreP300] = quantificationVectoriellePlusProche
     end
     
     fprintf('=========================== \n');
-    fprintf('Nombre de baricentre inital = %.4f \n', nombreBaricentreInitial);
-    fprintf('Classification P300         = %.4f \n', size(nouveauP300, 1));
-    fprintf('Classification NP300        = %.4f \n', size(nouveauNP300, 1));  
+    fprintf('K                       = %.4f \n', k);
+    fprintf('Classification P300     = %.4f \n', size(nouveauP300, 1));
+    fprintf('Classification NP300    = %.4f \n', size(nouveauNP300, 1));  
     fprintf('=========================== \n');
 end
 

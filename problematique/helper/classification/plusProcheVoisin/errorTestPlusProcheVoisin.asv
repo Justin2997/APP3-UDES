@@ -31,7 +31,7 @@ function [errorNP300, errorP300] = errorTestPlusProcheVoisin(test_nP300, test_P3
             end
         end
         
-        if (numberPointP300 < numberPointNP300)
+        if (numberPointP300 > numberPointNP300)
             errorP300 = errorP300 + 1;
         end
         
@@ -61,7 +61,7 @@ function [errorNP300, errorP300] = errorTestPlusProcheVoisin(test_nP300, test_P3
             end
         end
         
-        if (numberPointP300 > numberPointNP300)
+        if (numberPointP300 < numberPointNP300)
             errorNP300 = errorNP300 + 1;
         end
         
@@ -70,9 +70,9 @@ function [errorNP300, errorP300] = errorTestPlusProcheVoisin(test_nP300, test_P3
     end
     
     fprintf('=========================== \n');
-    fprintf('Test                  \n');
+    fprintf('Test                  \n', k);
     fprintf('K              = %.4f \n', k);
-    fprintf('Error P300     = %.4f \n', ((errorP300)/test_P300size) * 100);
+    fprintf('Error P300     = %.4f \n', ((test_nP300sizeerrorP300)/test_P300size) * 100);
     fprintf('Error NP300    = %.4f \n', ((errorNP300)/test_nP300size) * 100);
     fprintf('=========================== \n');
 end

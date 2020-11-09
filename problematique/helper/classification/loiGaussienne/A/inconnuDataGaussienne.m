@@ -13,7 +13,6 @@ function [inconnuNP300, inconnuP300] = inconnuDataGaussienne(probNP300, probP300
     for index = 1:numberSize
         %fprintf('Index for NP300 = %f \n', index);
         point = inconnu(index, :);
-        point = [point(:, 3), point(:, 4)]; % TODO Changer sa quand decoraltion va être fini
         
         testP300 = eval(subs(probP300, [x1, x2], point));
         testNP300 = eval(subs(probNP300, [x1, x2], point));

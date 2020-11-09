@@ -8,8 +8,7 @@ function [inconnuNP300, inconnuP300] = inconnuTestPlusProcheVoisin(inconnus, bar
     for index = 1:test_inconnuSize  
         %% Calcule de la distance
         A = inconnus(index, :);
-        A = [A(:, 3), A(:, 4)]; % TODO Changer sa quand decoraltion va être fini
-        
+
         temp_nP300 = baricentreNP300;
         temp_P300  = baricentreP300;
         

@@ -1,5 +1,5 @@
 function analysePCA(data)
-[coeff, score,latent,~, explained] = pca(data)
+[coeff, score,latent,~, explained] = pca(data);
 
 decorrData = data * coeff;
 figure

@@ -29,7 +29,6 @@ function [errorNP300, errorP300] = testDataGaussienne(probNP300, probP300, test_
         point = test_P300(index, :);
         testP300 = eval(subs(probP300, [x1, x2], point));
         testNP300 = eval(subs(probNP300, [x1, x2], point));
-        %testNP300 = testNP300/3;
 
         % Faux négatif
         if (testP300 < testNP300)
@@ -39,8 +38,8 @@ function [errorNP300, errorP300] = testDataGaussienne(probNP300, probP300, test_
     fprintf('Finish P300 \n');
 
     fprintf('=========================== \n');
-    fprintf('Test : error NP300 = %.4f \n', ((numberNP300 - errorNP300)/numberNP300) * 100);
-    fprintf('Test : error P300 = %.4f \n', ((numberP300 - errorP300)/numberP300) * 100);
+    fprintf('Test : error NP300 = %.4f \n', ((errorNP300)/numberNP300) * 100);
+    fprintf('Test : error P300 = %.4f \n', ((errorP300)/numberP300) * 100);
     fprintf('=========================== \n');
 
     fprintf('=========================== \n');
