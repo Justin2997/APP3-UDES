@@ -24,8 +24,8 @@ function [propreNP300, propreP300] = decorelation(nP300, P300, coeff)
     % pcaP300 = pcacov(P300);
     
     % Return
-    P300 = P300 * coeff;
-    nP300 = nP300 * coeff;
+    %P300 = P300 * coeff;
+    %nP300 = nP300 * coeff;
     
     propreNP300 = [nP300(:, 3), nP300(:, 4)];
     propreP300 = [P300(:, 3), P300(:, 4)];

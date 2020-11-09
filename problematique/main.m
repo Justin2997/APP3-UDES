@@ -12,6 +12,7 @@ addpath("helper/init");
 addpath("helper/analyse");
 addpath("helper/classification");
 addpath("helper/classification/loiGaussienne");
+addpath("helper/classification/loiGaussienne/A");
 addpath("helper/classification/plusProcheVoisin/A");
 addpath("helper/classification/plusProcheVoisin/B");
 addpath("helper/classification/bayes");
@@ -24,24 +25,32 @@ all_training = [training_nP300; training_P300];
 
 %% Analyse P300 structure
 
-%analyse_pca(all_training)
-
+% analysePCA(all_training)
 % plotTrainingData(training_nP300, training_P300);
+
+%% 2 - A) Implémentation d'algorithme
+fprintf('2 - A) \n');
 [coeff,~,~,~,~] = pca(all_training);
 [decorelation_training_nP300, decorelation_training_P300] = decorelation(training_nP300, training_P300, coeff);
 
-%% Implémentation d'algorithme - Loi Gaussienne
-%[probNP300, probP300] = evaluationProbability(decorelation_training_nP300, decorelation_training_P300);
+[probNP300, probP300] = evaluationProbability(decorelation_training_nP300, decorelation_training_P300);
 
-%[decorelation_training_nP300, decorelation_training_P300] = decorelation(training_nP300, training_P300);
-%[training_errorNP300, training_errorP300] = calculeErrorGaussiennes(probNP300, probP300, decorelation_training_nP300, decorelation_training_P300);
+% Error sur les données de training
+[training_errorNP300, training_errorP300] = calculeErrorGaussiennes(probNP300, probP300, decorelation_training_nP300, decorelation_training_P300);
 
+% Error sur les données de test
 [decorelation_test_nP300, decorelation_test_P300] = decorelation(test_nP300, test_P300, coeff);
-%[test_errorNP300, test_errorP300] = testDataGaussienne(probNP300, probP300, decorelation_test_nP300, decorelation_test_P300);
+[test_errorNP300, test_errorP300] = testDataGaussienne(probNP300, probP300, decorelation_test_nP300, decorelation_test_P300);
 
-%% Implémentation Bayes
+% Inconnu
+[inconnuNP300, inconnuP300] = inconnuDataGaussienne(probNP300, probP300, Inconnus);
+
+%%  2 - B) Implémentation Bayes
 %TODO: restructurer pour sortie
-[test_errorNP300, test_errorP300] = erreurBayes(decorelation_test_nP300, decorelation_test_P300, decorelation_training_nP300, decorelation_training_P300);
+%[test_errorNP300, test_errorP300] = erreurBayes(decorelation_test_nP300, decorelation_test_P300, decorelation_training_nP300, decorelation_training_P300);
+
+%% 3 - C) Implémentation d'algorithme
+
 
 %% 5 - Implémentation Plus proche voisin
 

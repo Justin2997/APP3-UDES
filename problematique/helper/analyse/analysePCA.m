@@ -1,4 +1,4 @@
-function analyse_pca(data)
+function analysePCA(data)
 [coeff, score,latent,~, explained] = pca(data)
 
 decorrData = data * coeff;
