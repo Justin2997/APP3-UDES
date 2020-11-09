@@ -6,7 +6,8 @@ function [errorNP300, errorP300] = errorTestPlusProcheVoisin(test_nP300, test_P3
     numberPointNP300 = 0;
     numberPointP300 = 0;
     
-    nP300 = resample(nP300, 1, 4);
+    % TODO : Enlever le resample
+    % nP300 = resample(nP300, 1, 4);
     
     test_nP300size = size(test_nP300, 1);
     test_P300size = size(test_P300, 1);
