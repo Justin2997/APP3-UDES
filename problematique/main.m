@@ -13,6 +13,7 @@ addpath("helper/analyse");
 addpath("helper/classification");
 addpath("helper/classification/loiGaussienne");
 addpath("helper/classification/loiGaussienne/A");
+addpath("helper/classification/loiGaussienne/C");
 addpath("helper/classification/plusProcheVoisin/A");
 addpath("helper/classification/plusProcheVoisin/B");
 addpath("helper/classification/bayes");
@@ -22,8 +23,9 @@ addpath("donnees/");
 [test_nP300, test_P300] = loadTestData();
 
 %% 1 - Analyse des données
-% analysePCA([training_nP300; training_P300])
-% plotTrainingData(training_nP300, training_P300);
+%analysePCA([training_nP300; training_P300])
+show_4d(training_nP300, training_P300)
+%plotTrainingData(training_nP300, training_P300);
 
 %% 1- Decorelation
 all_training = [training_nP300; training_P300];
@@ -51,10 +53,20 @@ fprintf('2 - A) \n');
 
 %%  2 - B) Implémentation Bayes
 %TODO: restructurer pour sortie
-%[test_errorNP300, test_errorP300] = erreurBayes(decorelation_test_nP300, decorelation_test_P300, decorelation_training_nP300, decorelation_training_P300);
+[test_errorNP300_bayes, test_errorP300_bayes] = erreurBayes(decorelation_test_nP300, decorelation_test_P300, decorelation_training_nP300, decorelation_training_P300);
 
-%% 3 - C) Implémentation d'algorithme
+%% 2 - C) Implémentation d'algorithme
+fprintf('2 - C) \n');
+[probNP300, probP300] = evaluationProbability(decorelation_training_nP300, decorelation_training_P300);
 
+% Error sur les données de training
+[training_errorNP300, training_errorP300] = calculeErrorGaussiennes_frontiere(probNP300, probP300, decorelation_training_nP300, decorelation_training_P300);
+
+% Error sur les données de test
+[test_errorNP300, test_errorP300] = testDataGaussienne_frontiere(probNP300, probP300, decorelation_test_nP300, decorelation_test_P300);
+
+% Inconnu
+[inconnuNP300, inconnuP300] = inconnuDataGaussienne_frontiere(probNP300, probP300, decorelation_inconnu);
 
 %% 5 - Implémentation Plus proche voisin
 

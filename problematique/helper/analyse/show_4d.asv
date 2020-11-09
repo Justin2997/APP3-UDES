@@ -24,19 +24,7 @@ scatter(data2(:,1),data2(:,4),10,'r','+')
 subplot(2,3,4)
 hold on
 title('Dimension 2 et 3')
-scatter(data(:,2),data(:,3),10,'b','o')
-scatter(data2(:,2),data2(:,3),10,'r','+')
-
-subplot(2,3,5)
-hold on
-title('Dimension 2 et 4')
-scatter(data(:,2),data(:,4),10,'b','o')
-scatter(data2(:,2),data2(:,4),10,'r','+')
-
-subplot(2,3,6)
-hold on
-title('Dimension 3 et 4')
-scatter(data(:,3),data(:,4),10,'b','o')
-scatter(data2(:,3),data2(:,4),10,'r','+')
+scatter(data(:,1),data(:,3),10,'b','o')
+scatter(data2(:,1),data2(:,3),10,'r','+')
 
 end
