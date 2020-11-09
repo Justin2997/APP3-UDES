@@ -1,4 +1,4 @@
-function [erreur_P300, erreur_nP300] = erreurBayes(propreNP300_test, propreP300_test, propreNP300,  propreP300)
+function [erreur_p, erreur_np] = erreurBayes(propreNP300_test, propreP300_test, propreNP300,  propreP300)
 
 alldata = [propreP300(:,:);propreNP300(:,:)];
 
@@ -12,7 +12,7 @@ alldata_size = length(alldata);
 
 P300_hist = P300_hist/P300_size;
 nP300_hist = nP300_hist/nP300_size;
-pX = alldata_hist/alldata_size;
+alldata_hist = alldata_hist/alldata_size;
 
 CxP300 = P300_size/alldata_size;
 CxnP300 = nP300_size/alldata_size;
@@ -26,7 +26,7 @@ for index = 1:length(propreNP300_test)
     PCx3 = pXc*CxP300/pX * 3;
     nPCx3 = npXc*CxnP300/pX;
     
-    if nPCx3 < PCx3
+    if nPCx3 <= PCx3
         erreur_np = erreur_np + 1;
     end
 end
@@ -40,12 +40,12 @@ for index = 1:length(propreP300_test)
     PCx3 = pXc*CxP300/pX * 3;
     nPCx3 = npXc*CxnP300/pX;
     
-    if nPCx3 > PCx3
+    if nPCx3 >= PCx3
         erreur_p = erreur_p + 1;
     end
 end
 
-erreur_P300 = erreur_p / length(propreP300_test);
-erreur_nP300 = erreur_np / length(propreNP300_test);
+%erreur_p = erreur_p / length(propreP300_test);
+%erreur_np = erreur_np / length(propreNP300_test);
 
 end
