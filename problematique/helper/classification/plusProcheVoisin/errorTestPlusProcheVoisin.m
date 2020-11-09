@@ -18,7 +18,7 @@ function [errorNP300, errorP300] = errorTestPlusProcheVoisin(test_nP300, test_P3
         temp_nP300 = nP300;
         temp_P300  = P300;
         
-        for kIndex = 1:k %% TODO Not sure this should be k + 1
+        for kIndex = 1:k
             distance_from_P300 = sum((temp_P300 - A) .^ 2, 2);
             distance_from_NP300 = sum((temp_nP300 - A) .^ 2, 2);
         

@@ -1,4 +1,0 @@
-function [outputArg1,outputArg2] = testPlusProcheVoisin(nP300, P300, k)
-    
-end
-
