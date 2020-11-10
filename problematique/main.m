@@ -27,6 +27,7 @@ addpath("donnees/");
 %show_4d(training_nP300, training_P300)
 %plotTrainingData(training_nP300, training_P300);
 
+
 %% 1- Decorelation
 all_training = [training_nP300; training_P300];
 covCombine = cov(all_training);
@@ -45,6 +46,14 @@ decorelation_training_P300 = reduction_dimension(decorelation_training_P300);
 decorelation_test_nP300 = reduction_dimension(decorelation_test_nP300);
 decorelation_test_P300 = reduction_dimension(decorelation_test_P300);
 decorelation_inconnu = reduction_dimension(decorelation_inconnu);
+
+figure
+title("NP300")
+histogram2(decorelation_training_nP300(:,1),decorelation_training_nP300(:,2))
+
+figure
+title("P300")
+histogram2(decorelation_training_P300(:,1),decorelation_training_P300(:,2))
 
 %% 2 - A) Implémentation d'algorithme
 fprintf('2 - A) \n');

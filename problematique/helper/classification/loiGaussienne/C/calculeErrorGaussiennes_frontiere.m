@@ -15,6 +15,13 @@ function [errorNP300, errorP300] = calculeErrorGaussiennes_frontiere(probNP300, 
     
     frontiere = probP300 - probNP300;
     
+    figure;
+    hold on
+    plot(nP300(:, 1), nP300(:, 2), "o");
+    plot(P300(:, 1), P300(:, 2), "x");
+    fimplicit(frontiere)
+    
+    
     for index = 1:numberNP300
         % fprintf('Index for NP300 = %f \n', index);
         point = nP300(index, :);

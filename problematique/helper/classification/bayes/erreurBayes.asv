@@ -1,0 +1,100 @@
+function [erreur_p_entrainement, erreur_np_entrainement, erreur_p_test, erreur_np_test, inconnue_p, inconnue_np] = erreurBayes(propreNP300_test, propreP300_test, propreNP300,  propreP300, inconnue)
+
+alldata = [propreP300(:,:);propreNP300(:,:)];
+
+[nP300_hist, nPXedge, nPYedge] = histcounts2(propreNP300(:,1),propreNP300(:,2));
+[P300_hist, PXedge, PYedge]  = histcounts2(propreP300(:,1),propreP300(:,2));
+[alldata_hist, AXedge, AYedge]  = histcounts2(alldata(:,1),alldata(:,2));
+
+P300_size = length(propreP300);
+nP300_size = length(propreNP300);
+alldata_size = length(alldata);
+
+P300_hist = P300_hist/P300_size;
+nP300_hist = nP300_hist/nP300_size;
+alldata_hist = alldata_hist/alldata_size;
+
+CxP300 = P300_size/alldata_size;
+CxnP300 = nP300_size/alldata_size;
+
+erreur_np_test = 0;
+erreur_p_test = 0;
+erreur_p_entrainement = 0;
+erreur_np_entrainement = 0;
+inconnue_p = 0;
+inconnue_np = 0;
+
+fprintf('=========================== \n');
+fprintf('Training \n');
+
+fprintf('Testing NP300 on %f data... \n', length(propreNP300));
+
+for index = 1:length(propreNP300)
+    bayes(P300_hist,PXedge,PYedge, nP300_hist,nPXedge,nPYedge,alldata_hist,AXedge,AYedge, propreNP300(index,:));
+    if nPCx3 <= PCx3
+        erreur_np_entrainement = erreur_np_entrainement + 1;
+    end
+end
+fprintf('Finish NP300 \n');
+
+fprintf('Testing P300 on %f data... \n', length(propreP300));
+
+for index = 1:length(propreP300)
+    bayes(P300_hist,PXedge,PYedge, nP300_hist,nPXedge,nPYedge,alldata_hist,AXedge,AYedge, propreP300(index,:));
+
+    if nPCx3 >= PCx3
+        erreur_p_entrainement = erreur_p_entrainement + 1;
+    end
+end
+
+fprintf('Finish P300 \n');
+
+
+erreur_p = erreur_p_entrainement / length(propreP300);
+erreur_np = erreur_np_entrainement / length(propreNP300_test);
+
+fprintf('=========================== \n');
+fprintf('Training : error NP300 = %.4f \n', ((errorNP300)/numberNP300) * 100);
+fprintf('Training : error P300 = %.4f \n', ((errorP300)/numberP300) * 100);
+fprintf('=========================== \n');
+fprintf('=========================== \n');
+fprintf('=========================== \n');
+fprintf('Test \n');
+
+fprintf('Testing NP300 on %f data... \n', numberNP300);
+
+for index = 1:length(propreNP300_test)
+    bayes(P300_hist,PXedge,PYedge, nP300_hist,nPXedge,nPYedge,alldata_hist,AXedge,AYedge, propreNP300_test(index,:));
+    if nPCx3 <= PCx3
+        erreur_np_test = erreur_np_test + 1;
+    end
+end
+
+for index = 1:length(propreP300_test)
+    bayes(P300_hist,PXedge,PYedge, nP300_hist,nPXedge,nPYedge,alldata_hist,AXedge,AYedge, propreP300_test(index,:));
+
+    if nPCx3 >= PCx3
+        erreur_p_test = erreur_p_test + 1;
+    end
+end
+
+
+
+
+fprintf('=========================== \n');
+fprintf('Inconnu \n');
+
+fprintf('Testing Inconnu on %f data... \n', numberSize);
+
+for index = 1:length(inconnue)
+    bayes(P300_hist,PXedge,PYedge, nP300_hist,nPXedge,nPYedge,alldata_hist,AXedge,AYedge, inconnue(index,:));
+
+    if nPCx3 >= PCx3
+        inconnue_p = inconnue_p + 1;
+    else
+       inconnue_np = inconnue_np + 1;
+    end
+end
+
+
+end
