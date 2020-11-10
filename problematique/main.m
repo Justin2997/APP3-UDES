@@ -23,14 +23,14 @@ addpath("donnees/");
 [test_nP300, test_P300] = loadTestData();
 
 %% 1 - Analyse des données
-%analysePCA([training_nP300; training_P300])
+analysePCA([training_nP300; training_P300])
 show_4d(training_nP300, training_P300)
-%plotTrainingData(training_nP300, training_P300);
+plotTrainingData(training_nP300, training_P300);
 
 %% 1- Decorelation
 all_training = [training_nP300; training_P300];
 covCombine = cov(all_training);
-[vectorPropre, vecteurPropre] = eig(covCombine);
+[vectorPropre, valeurPropre] = eig(covCombine);
 
 [decorelation_training_nP300] = decorelation(training_nP300, vectorPropre);
 [decorelation_training_P300] = decorelation(training_P300, vectorPropre);
@@ -61,7 +61,7 @@ apriorieP300 = length(decorelation_training_P300)/length(all_training)
 [inconnuNP300, inconnuP300] = inconnuDataGaussienne(probNP300, probP300, decorelation_inconnu, apriorieP300);
 
 %%  2 - B) Implémentation Bayes
-%TODO: restructurer pour sortie
+fprintf('2 - B) \n');
 [test_errorNP300_bayes, test_errorP300_bayes] = erreurBayes(decorelation_test_nP300, decorelation_test_P300, decorelation_training_nP300, decorelation_training_P300);
 
 %% 2 - C) Implémentation d'algorithme
@@ -82,7 +82,7 @@ apriorieP300 = length(decorelation_training_P300)/length(all_training)
 
 % A)
 fprintf('5 - A) \n');
-k = 100;
+k = 5;
 [baricentreNP300, baricentreP300] = baricentrePlusProcheVoisin(decorelation_training_nP300, decorelation_training_P300, k);
 [test_errorNP300, test_errorP300] = errorTestPlusProcheVoisin(decorelation_test_nP300, decorelation_test_P300, baricentreNP300, baricentreP300, k);
 [inconnuNP300, inconnuP300] = inconnuTestPlusProcheVoisin(decorelation_inconnu, baricentreNP300, baricentreP300, k);
@@ -90,7 +90,7 @@ k = 100;
 % B)
 fprintf('5 - B) \n');
 k = 2;
-nombreBaricentreInitial = 15;
+nombreBaricentreInitial = 2;
 [baricentreNP300, baricentreP300] = quantificationVectoriellePlusProcheVoisin(decorelation_training_nP300, decorelation_training_P300, nombreBaricentreInitial);
 [test_errorNP300, test_errorP300] = errorTestPlusProcheVoisin(decorelation_test_nP300, decorelation_test_P300, baricentreNP300, baricentreP300, k);
 [inconnuNP300, inconnuP300] = inconnuTestPlusProcheVoisin(decorelation_inconnu, baricentreNP300, baricentreP300, k);
