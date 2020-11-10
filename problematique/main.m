@@ -62,7 +62,7 @@ apriorieP300 = length(decorelation_training_P300)/length(all_training)
 
 %%  2 - B) Implémentation Bayes
 fprintf('2 - B) \n');
-[test_errorNP300_bayes, test_errorP300_bayes] = erreurBayes(decorelation_test_nP300, decorelation_test_P300, decorelation_training_nP300, decorelation_training_P300);
+resultat_bayes = erreurBayes(decorelation_test_nP300, decorelation_test_P300, decorelation_training_nP300, decorelation_training_P300, decorelation_inconnu);
 
 %% 2 - C) Implémentation d'algorithme
 fprintf('2 - C) \n');
