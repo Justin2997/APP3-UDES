@@ -1,4 +1,4 @@
-function [errorNP300, errorP300] = testDataGaussienne(probNP300, probP300, test_nP300, test_P300)
+function [errorNP300, errorP300] = testDataGaussienne(probNP300, probP300, test_nP300, test_P300, apriorieP300)
     syms x1 x2;
     
     numberNP300 = 30;
@@ -15,6 +15,9 @@ function [errorNP300, errorP300] = testDataGaussienne(probNP300, probP300, test_
         testP300 = eval(subs(probP300, [x1, x2], point));
         testNP300 = eval(subs(probNP300, [x1, x2], point));
 
+        testP300 = testP300 * apriorieP300;
+        testNP300 = testNP300 * (1-apriorieP300);
+        
         % Faux Positif
         if (testNP300 < testP300)
             errorNP300 = errorNP300 + 1;
@@ -30,6 +33,9 @@ function [errorNP300, errorP300] = testDataGaussienne(probNP300, probP300, test_
         testP300 = eval(subs(probP300, [x1, x2], point));
         testNP300 = eval(subs(probNP300, [x1, x2], point));
 
+        testP300 = testP300 * apriorieP300;
+        testNP300 = testNP300 * (1-apriorieP300);
+        
         % Faux négatif
         if (testP300 < testNP300)
             errorP300 = errorP300 + 1;

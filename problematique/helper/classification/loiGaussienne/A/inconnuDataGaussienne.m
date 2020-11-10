@@ -1,4 +1,4 @@
-function [inconnuNP300, inconnuP300] = inconnuDataGaussienne(probNP300, probP300, inconnu)
+function [inconnuNP300, inconnuP300] = inconnuDataGaussienne(probNP300, probP300, inconnu, apriorieP300)
     syms x1 x2;
     
     inconnuNP300 = [];
@@ -17,6 +17,9 @@ function [inconnuNP300, inconnuP300] = inconnuDataGaussienne(probNP300, probP300
         testP300 = eval(subs(probP300, [x1, x2], point));
         testNP300 = eval(subs(probNP300, [x1, x2], point));
 
+        testP300 = testP300 * apriorieP300;
+        testNP300 = testNP300 * (1-apriorieP300);
+        
         % Faux Positif
         if (testNP300 < testP300)
             inconnuP300 = [inconnuP300; point];

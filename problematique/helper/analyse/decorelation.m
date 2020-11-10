@@ -7,7 +7,6 @@ function [propre] = decorelation(data, coeff)
 
     % Return (page 116 note de cour)
     data = coeff' * data';
-    data = (data)';
-    propre = [data(:, 3), data(:, 4)];
+    propre = (data)';
 end
 

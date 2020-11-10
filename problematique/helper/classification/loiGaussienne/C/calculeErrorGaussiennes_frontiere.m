@@ -1,4 +1,4 @@
-function [errorNP300, errorP300] = calculeErrorGaussiennes_frontiere(probNP300, probP300, nP300, P300)
+function [errorNP300, errorP300] = calculeErrorGaussiennes_frontiere(probNP300, probP300, nP300, P300, apriorieP300)
     syms x1 x2;
     
     numberNP300 = size(nP300, 1);
@@ -9,6 +9,9 @@ function [errorNP300, errorP300] = calculeErrorGaussiennes_frontiere(probNP300, 
     
     fprintf('Testing NP300 on %f data... \n', numberNP300);
     errorNP300 = 0;
+    
+    probP300 = probP300 * apriorieP300;
+    probNP300 = probNP300 * (1-apriorieP300);
     
     frontiere = probP300 - probNP300;
     
