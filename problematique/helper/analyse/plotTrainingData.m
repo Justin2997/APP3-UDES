@@ -1,3 +1,6 @@
+% Author: Justin Brulotte, Gabriel Bouchard, Sébastien Pomerleau
+% Université de Sherbrooke, APP3 S8GIA, A2020
+
 function [] = plotTrainingData(nP300, P300)
     figure;
 

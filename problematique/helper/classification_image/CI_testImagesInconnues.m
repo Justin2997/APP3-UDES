@@ -1,4 +1,7 @@
-function [inconnuCoast, inconnuForest, inconnuStreet] = testImagesInconnues(probCoast, probForest, probStreet, inconnu)
+% Author: Justin Brulotte, Gabriel Bouchard, Sébastien Pomerleau
+% Université de Sherbrooke, APP3 S8GIA, A2020
+
+function [inconnuCoast, inconnuForest, inconnuStreet] = CI_testImagesInconnues(probCoast, probForest, probStreet, inconnu)
     syms x1 x2;
     
     inconnuCoast = [];

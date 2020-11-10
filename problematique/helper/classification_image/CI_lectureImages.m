@@ -1,6 +1,12 @@
-function [S_Coast, S_Forest, S_Street]=lectureImages(Mode, ParamToReduce)
+% Author: Justin Brulotte, Gabriel Bouchard, Sébastien Pomerleau
+% Université de Sherbrooke, APP3 S8GIA, A2020
 
-D = '../../baseDeDonneesImagesTraining/';
+function [S_Coast, S_Forest, S_Street] = CI_lectureImages(Mode)
+S_Coast = [];
+S_Forest = [];
+S_Street = [];
+
+D = "donnees/images/training";
 
 imageCoast = dir(fullfile(D, 'coast*.jpg'));
 % S_Coast = cell(1, numel(imageCoast));
@@ -19,9 +25,7 @@ for k = 2:numel(imageCoast)
         case 4
             [I(:,:,1),I(:,:,2),I(:,:,3)]=RGB2Lab(I(:,:,1),I(:,:,2),I(:,:,3));
     end
-
-    % I(:,:,ParamToReduce) = [];
-    
+   
     S_Coast(k).data = I; 
 end
 
@@ -43,7 +47,6 @@ for k = 2:numel(imageForest)
             [I(:,:,1),I(:,:,2),I(:,:,3)]=RGB2Lab(I(:,:,1),I(:,:,2),I(:,:,3));
         end
         
-    % I(:,:,ParamToReduce) = [];
     S_Forest(k).data = I; 
 end
 
@@ -63,7 +66,6 @@ for k = 2:numel(street)
         case 4
             [I(:,:,1),I(:,:,2),I(:,:,3)]=RGB2Lab(I(:,:,1),I(:,:,2),I(:,:,3));
         end
-        
-    % I(:,:,ParamToReduce) = [];
+       
     S_Street(k).data = I; 
 end

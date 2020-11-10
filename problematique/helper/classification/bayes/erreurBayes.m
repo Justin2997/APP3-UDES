@@ -1,3 +1,6 @@
+% Author: Justin Brulotte, Gabriel Bouchard, Sébastien Pomerleau
+% Université de Sherbrooke, APP3 S8GIA, A2020
+
 function [erreur_p, erreur_np] = erreurBayes(propreNP300_test, propreP300_test, propreNP300,  propreP300)
 
 alldata = [propreP300(:,:);propreNP300(:,:)];

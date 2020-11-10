@@ -1,3 +1,6 @@
+% Author: Justin Brulotte, Gabriel Bouchard, Sébastien Pomerleau
+% Université de Sherbrooke, APP3 S8GIA, A2020
+
 function [errorNP300, errorP300] = errorTestPlusProcheVoisin(test_nP300, test_P300, baricentreNP300, baricentreP300, k)
     %% Initialisation
     errorNP300 = 0;

@@ -1,3 +1,6 @@
+% Author: Justin Brulotte, Gabriel Bouchard, Sébastien Pomerleau
+% Université de Sherbrooke, APP3 S8GIA, A2020
+
 function [inconnuNP300, inconnuP300] = inconnuTestPlusProcheVoisin(inconnus, baricentreNP300, baricentreP300, k)
     %% Initialisation
     inconnuNP300 = [];

@@ -1,3 +1,6 @@
+% Author: Justin Brulotte, Gabriel Bouchard, Sébastien Pomerleau
+% Université de Sherbrooke, APP3 S8GIA, A2020
+
 function [errorNP300, errorP300] = testDataGaussienne(probNP300, probP300, test_nP300, test_P300, apriorieP300)
     syms x1 x2;
     

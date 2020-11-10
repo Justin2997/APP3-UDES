@@ -1,3 +1,6 @@
+% Author: Justin Brulotte, Gabriel Bouchard, Sébastien Pomerleau
+% Université de Sherbrooke, APP3 S8GIA, A2020
+
 function [propre] = decorelation(data, coeff)
     % Page 117 Note de Cours
     % Ce raisonnement peut être poursuivi, et, finalement, 
