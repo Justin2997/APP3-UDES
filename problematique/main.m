@@ -38,18 +38,27 @@ covCombine = cov(all_training);
 [decorelation_test_P300] = decorelation(test_P300, vectorPropre);
 [decorelation_inconnu] = decorelation(Inconnus, vectorPropre);
 
+show_4d(decorelation_training_nP300, decorelation_training_P300)
+
+decorelation_training_nP300 = reduction_dimension(decorelation_training_nP300);
+decorelation_training_P300 = reduction_dimension(decorelation_training_P300);
+decorelation_test_nP300 = reduction_dimension(decorelation_test_nP300);
+decorelation_test_P300 = reduction_dimension(decorelation_test_P300);
+decorelation_inconnu = reduction_dimension(decorelation_inconnu);
+
 %% 2 - A) Implémentation d'algorithme
 fprintf('2 - A) \n');
+apriorieP300 = length(decorelation_training_P300)/length(all_training)
 [probNP300, probP300] = evaluationProbability(decorelation_training_nP300, decorelation_training_P300);
 
 % Error sur les données de training
-[training_errorNP300, training_errorP300] = calculeErrorGaussiennes(probNP300, probP300, decorelation_training_nP300, decorelation_training_P300);
+[training_errorNP300, training_errorP300] = calculeErrorGaussiennes(probNP300, probP300, decorelation_training_nP300, decorelation_training_P300, apriorieP300);
 
 % Error sur les données de test
-[test_errorNP300, test_errorP300] = testDataGaussienne(probNP300, probP300, decorelation_test_nP300, decorelation_test_P300);
+[test_errorNP300, test_errorP300] = testDataGaussienne(probNP300, probP300, decorelation_test_nP300, decorelation_test_P300, apriorieP300);
 
 % Inconnu
-[inconnuNP300, inconnuP300] = inconnuDataGaussienne(probNP300, probP300, decorelation_inconnu);
+[inconnuNP300, inconnuP300] = inconnuDataGaussienne(probNP300, probP300, decorelation_inconnu, apriorieP300);
 
 %%  2 - B) Implémentation Bayes
 %TODO: restructurer pour sortie
@@ -57,16 +66,17 @@ fprintf('2 - A) \n');
 
 %% 2 - C) Implémentation d'algorithme
 fprintf('2 - C) \n');
+apriorieP300 = length(decorelation_training_P300)/length(all_training)
 [probNP300, probP300] = evaluationProbability(decorelation_training_nP300, decorelation_training_P300);
 
 % Error sur les données de training
-[training_errorNP300, training_errorP300] = calculeErrorGaussiennes_frontiere(probNP300, probP300, decorelation_training_nP300, decorelation_training_P300);
+[training_errorNP300, training_errorP300] = calculeErrorGaussiennes_frontiere(probNP300, probP300, decorelation_training_nP300, decorelation_training_P300, apriorieP300);
 
 % Error sur les données de test
-[test_errorNP300, test_errorP300] = testDataGaussienne_frontiere(probNP300, probP300, decorelation_test_nP300, decorelation_test_P300);
+[test_errorNP300, test_errorP300] = testDataGaussienne_frontiere(probNP300, probP300, decorelation_test_nP300, decorelation_test_P300, apriorieP300);
 
 % Inconnu
-[inconnuNP300, inconnuP300] = inconnuDataGaussienne_frontiere(probNP300, probP300, decorelation_inconnu);
+[inconnuNP300, inconnuP300] = inconnuDataGaussienne_frontiere(probNP300, probP300, decorelation_inconnu, apriorieP300);
 
 %% 5 - Implémentation Plus proche voisin
 

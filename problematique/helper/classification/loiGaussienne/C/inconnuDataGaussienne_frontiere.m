@@ -1,4 +1,4 @@
-function [inconnuNP300, inconnuP300] = inconnuDataGaussienne_frontiere(probNP300, probP300, inconnu)
+function [inconnuNP300, inconnuP300] = inconnuDataGaussienne_frontiere(probNP300, probP300, inconnu, apriorieP300)
     syms x1 x2;
     
     inconnuNP300 = [];
@@ -11,7 +11,10 @@ function [inconnuNP300, inconnuP300] = inconnuDataGaussienne_frontiere(probNP300
     
     fprintf('Testing Inconnu on %f data... \n', numberSize);
     
-    frontiere = probP300 - probNP30;
+    probP300 = probP300 * apriorieP300;
+    probNP300 = probNP300 * (1-apriorieP300);
+    
+    frontiere = probP300 - probNP300;
     
     for index = 1:numberSize
         %fprintf('Index for NP300 = %f \n', index);
