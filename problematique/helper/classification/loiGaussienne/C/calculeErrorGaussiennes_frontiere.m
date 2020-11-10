@@ -1,4 +1,4 @@
-function [errorNP300, errorP300] = calculeErrorGaussiennes(probNP300, probP300, nP300, P300, apriorieP300)
+function [errorNP300, errorP300] = calculeErrorGaussiennes_frontiere(probNP300, probP300, nP300, P300, apriorieP300)
     syms x1 x2;
     
     numberNP300 = size(nP300, 1);
@@ -9,17 +9,19 @@ function [errorNP300, errorP300] = calculeErrorGaussiennes(probNP300, probP300, 
     
     fprintf('Testing NP300 on %f data... \n', numberNP300);
     errorNP300 = 0;
+    
+    probP300 = probP300 * apriorieP300;
+    probNP300 = probNP300 * (1-apriorieP300);
+    
+    frontiere = probP300 - probNP300;
+    
     for index = 1:numberNP300
         % fprintf('Index for NP300 = %f \n', index);
         point = nP300(index, :);
-        testP300 = eval(subs(probP300, [x1, x2], point));
-        testNP300 = eval(subs(probNP300, [x1, x2], point));
-        
-        testP300 = testP300 * apriorieP300;
-        testNP300 = testNP300 * (1-apriorieP300);
+        answer = eval(subs(frontiere, [x1, x2], point));
 
         % Faux positif
-        if (testNP300 < testP300)
+        if (answer >= 0)
             errorNP300 = errorNP300 + 1;
         end
     end
@@ -33,11 +35,8 @@ function [errorNP300, errorP300] = calculeErrorGaussiennes(probNP300, probP300, 
         testP300 = eval(subs(probP300, [x1, x2], point));
         testNP300 = eval(subs(probNP300, [x1, x2], point));
 
-        testP300 = testP300 * apriorieP300;
-        testNP300 = testNP300 * (1-apriorieP300);
-        
         % Faux négatif
-        if (testP300 < testNP300)
+        if (answer <= 0)
             errorP300 = errorP300 + 1;
         end
     end

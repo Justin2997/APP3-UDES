@@ -1,4 +1,4 @@
-function [errorNP300, errorP300] = testDataGaussienne(probNP300, probP300, test_nP300, test_P300, apriorieP300)
+function [errorNP300, errorP300] = testDataGaussienne_frontiere(probNP300, probP300, test_nP300, test_P300, apriorieP300)
     syms x1 x2;
     
     numberNP300 = 30;
@@ -9,17 +9,18 @@ function [errorNP300, errorP300] = testDataGaussienne(probNP300, probP300, test_
     
     fprintf('Testing NP300 on %f data... \n', numberNP300);
     errorNP300 = 0;
+    
+    probP300 = probP300 * apriorieP300;
+    probNP300 = probNP300 * (1-apriorieP300);
+    
+    frontiere = probP300 - probNP300;
     for index = 1:numberNP300
         %fprintf('Index for NP300 = %f \n', index);
         point = test_nP300(index, :);
-        testP300 = eval(subs(probP300, [x1, x2], point));
-        testNP300 = eval(subs(probNP300, [x1, x2], point));
+        answer = eval(subs(frontiere, [x1, x2], point));
 
-        testP300 = testP300 * apriorieP300;
-        testNP300 = testNP300 * (1-apriorieP300);
-        
         % Faux Positif
-        if (testNP300 < testP300)
+        if (answer >= 0)
             errorNP300 = errorNP300 + 1;
         end
     end
@@ -30,14 +31,10 @@ function [errorNP300, errorP300] = testDataGaussienne(probNP300, probP300, test_
     for index = 1:numberP300
         %fprintf('Index for P300 = %f \n', index);
         point = test_P300(index, :);
-        testP300 = eval(subs(probP300, [x1, x2], point));
-        testNP300 = eval(subs(probNP300, [x1, x2], point));
+        answer = eval(subs(frontiere, [x1, x2], point));
 
-        testP300 = testP300 * apriorieP300;
-        testNP300 = testNP300 * (1-apriorieP300);
-        
         % Faux négatif
-        if (testP300 < testNP300)
+        if (answer <= 0)
             errorP300 = errorP300 + 1;
         end
     end
