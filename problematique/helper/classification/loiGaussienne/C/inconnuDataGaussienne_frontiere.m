@@ -1,3 +1,6 @@
+% Author: Justin Brulotte, Gabriel Bouchard, Sébastien Pomerleau
+% Université de Sherbrooke, APP3 S8GIA, A2020
+
 function [inconnuNP300, inconnuP300] = inconnuDataGaussienne_frontiere(probNP300, probP300, inconnu, apriorieP300)
     syms x1 x2;
     

@@ -1,5 +1,7 @@
-function [erreur_p_entrainement, erreur_np_entrainement, erreur_p_test, erreur_np_test, inconnue_p, inconnue_np] = erreurBayes(propreNP300_test, propreP300_test, propreNP300,  propreP300, inconnue)
+% Author: Justin Brulotte, Gabriel Bouchard, Sébastien Pomerleau
+% Université de Sherbrooke, APP3 S8GIA, A2020
 
+function [erreur_p_entrainement, erreur_np_entrainement, erreur_p_test, erreur_np_test, inconnue_p, inconnue_np] = erreurBayes(propreNP300_test, propreP300_test, propreNP300,  propreP300, inconnue)
 alldata = [propreP300(:,:);propreNP300(:,:)];
 
 [nP300_hist, nPXedge, nPYedge] = histcounts2(propreNP300(:,1),propreNP300(:,2));

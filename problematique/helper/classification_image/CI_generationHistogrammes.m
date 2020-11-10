@@ -1,4 +1,7 @@
-function [hist_Coast, hist_Forest, hist_Street]=generationHistogrammes(S_Coast, S_Forest, S_Street)
+% Author: Justin Brulotte, Gabriel Bouchard, Sébastien Pomerleau
+% Université de Sherbrooke, APP3 S8GIA, A2020
+
+function [hist_Coast, hist_Forest, hist_Street] = CI_generationHistogrammes(S_Coast, S_Forest, S_Street)
 
 for i = 1:3
    FullHistogramme = [0 0 0];

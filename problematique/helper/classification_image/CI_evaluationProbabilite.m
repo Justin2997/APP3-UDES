@@ -1,4 +1,7 @@
-function [probCoast, probForest, probStreet] = evaluationProbabilite(S_Coast, S_Forest, S_Street)
+% Author: Justin Brulotte, Gabriel Bouchard, Sébastien Pomerleau
+% Université de Sherbrooke, APP3 S8GIA, A2020
+
+function [probCoast, probForest, probStreet] = CI_evaluationProbabilite(S_Coast, S_Forest, S_Street)
     syms x1 x2; x = [x1; x2];
 
     meanCoast = (x - mean(S_Coast)');

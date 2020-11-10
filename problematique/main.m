@@ -1,3 +1,6 @@
+% Author: Justin Brulotte, Gabriel Bouchard, Sébastien Pomerleau
+% Université de Sherbrooke, APP3 S8GIA, A2020
+
 %% Initialisation
 clc;    % Clear the command window.
 close all;  % Close all figures (except those of imtool.)
