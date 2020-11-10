@@ -19,7 +19,6 @@ function [inconnuNP300, inconnuP300] = inconnuDataGaussienne_frontiere(probNP300
     for index = 1:numberSize
         %fprintf('Index for NP300 = %f \n', index);
         point = inconnu(index, :);
-        
         answer = eval(subs(frontiere, [x1, x2], point));
 
         % Faux Positif

@@ -48,7 +48,7 @@ decorelation_inconnu = reduction_dimension(decorelation_inconnu);
 
 %% 2 - A) Implémentation d'algorithme
 fprintf('2 - A) \n');
-apriorieP300 = length(decorelation_training_P300)/length(all_training)
+apriorieP300 = length(decorelation_training_P300)/length(all_training);
 [probNP300, probP300] = evaluationProbability(decorelation_training_nP300, decorelation_training_P300);
 
 % Error sur les données de training
@@ -66,7 +66,7 @@ fprintf('2 - B) \n');
 
 %% 2 - C) Implémentation d'algorithme
 fprintf('2 - C) \n');
-apriorieP300 = length(decorelation_training_P300)/length(all_training)
+apriorieP300 = length(decorelation_training_P300)/length(all_training);
 [probNP300, probP300] = evaluationProbability(decorelation_training_nP300, decorelation_training_P300);
 
 % Error sur les données de training
@@ -90,7 +90,7 @@ k = 5;
 % B)
 fprintf('5 - B) \n');
 k = 2;
-nombreBaricentreInitial = 2;
+nombreBaricentreInitial = 15;
 [baricentreNP300, baricentreP300] = quantificationVectoriellePlusProcheVoisin(decorelation_training_nP300, decorelation_training_P300, nombreBaricentreInitial);
 [test_errorNP300, test_errorP300] = errorTestPlusProcheVoisin(decorelation_test_nP300, decorelation_test_P300, baricentreNP300, baricentreP300, k);
 [inconnuNP300, inconnuP300] = inconnuTestPlusProcheVoisin(decorelation_inconnu, baricentreNP300, baricentreP300, k);
