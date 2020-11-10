@@ -32,8 +32,7 @@ function [errorNP300, errorP300] = calculeErrorGaussiennes_frontiere(probNP300, 
     for index = 1:numberP300
         %fprintf('Index for P300 = %f \n', index);
         point = P300(index, :);
-        testP300 = eval(subs(probP300, [x1, x2], point));
-        testNP300 = eval(subs(probNP300, [x1, x2], point));
+        answer = eval(subs(frontiere, [x1, x2], point));
 
         % Faux négatif
         if (answer <= 0)

@@ -14,7 +14,7 @@ function [probNP300, probP300] = evaluationProbability(nP300, P300)
   
     %figure
     %hold on
-    %fimplicit(probP300);
+    %fsurf(nP300VP300);
     %plot(P300(:,1), P300(:,2), "xr");
     %plot(nP300(:,1), nP300(:,2), "or");
 end

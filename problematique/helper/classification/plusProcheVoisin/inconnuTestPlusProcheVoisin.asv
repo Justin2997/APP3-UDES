@@ -33,15 +33,15 @@ function [inconnuNP300, inconnuP300] = inconnuTestPlusProcheVoisin(inconnus, bar
         if (size(inconnuP300, 1) >= size(inconnuNP300, 1))
             inconnuP300Size = inconnuP300Size + 1;
         else
-            inconnuNP300Size = inconnuNP300Size + 1;
+            inconnuP300Size = inconnuP300Size + 1;
         end
     end
     
     fprintf('=========================== \n');
     fprintf('Inconnus              \n');
     fprintf('K                = %.4f \n', k);
-    fprintf('Inconnu P300     = %.4f \n', inconnuP300Size);
-    fprintf('Inconnu NP300    = %.4f \n', inconnuNP300Size);
+    fprintf('Inconnu P300     = %.4f \n', inconnuP300);
+    fprintf('Inconnu NP300    = %.4f \n', inconnuNP300);
     fprintf('Inconnu Total    = %.4f \n', test_inconnuSize);
     fprintf('=========================== \n');
 end
