@@ -11,7 +11,7 @@ function [inconnuNP300, inconnuP300] = inconnuDataGaussienne_frontiere(probNP300
     
     fprintf('Testing Inconnu on %f data... \n', numberSize);
     
-    frontiere = probP300 - probNP30;
+    frontiere = probP300 - probNP300;
     
     for index = 1:numberSize
         %fprintf('Index for NP300 = %f \n', index);

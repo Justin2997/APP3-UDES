@@ -10,7 +10,7 @@ function [errorNP300, errorP300] = testDataGaussienne_frontiere(probNP300, probP
     fprintf('Testing NP300 on %f data... \n', numberNP300);
     errorNP300 = 0;
     
-    frontiere = probP300 - probNP30;
+    frontiere = probP300 - probNP300;
     for index = 1:numberNP300
         %fprintf('Index for NP300 = %f \n', index);
         point = test_nP300(index, :);
