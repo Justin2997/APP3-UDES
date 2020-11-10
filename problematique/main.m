@@ -23,9 +23,9 @@ addpath("donnees/");
 [test_nP300, test_P300] = loadTestData();
 
 %% 1 - Analyse des données
-analysePCA([training_nP300; training_P300])
-show_4d(training_nP300, training_P300)
-plotTrainingData(training_nP300, training_P300);
+%analysePCA([training_nP300; training_P300])
+%show_4d(training_nP300, training_P300)
+%plotTrainingData(training_nP300, training_P300);
 
 %% 1- Decorelation
 all_training = [training_nP300; training_P300];
